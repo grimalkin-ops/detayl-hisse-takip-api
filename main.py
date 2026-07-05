@@ -6,8 +6,16 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware   # 1. BU SATIRI EKLE
 
 app = FastAPI(title="Hisse Analiz API", description="Hisse senedi analizleri için API", version="1.0.0")
+# 2. BU BLOĞU EKLE (app satırının hemen altına)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def veri_cek(hisse: str, baslangic: str, bitis: str):
     veri = yf.Ticker(hisse).history(start=baslangic, end=bitis)
