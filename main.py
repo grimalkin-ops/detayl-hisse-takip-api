@@ -82,7 +82,7 @@ def grafik4(hisse: str, baslangic: str = "2021-01-01", bitis: str = "2026-06-30"
 def  grafik3(hisse: str, baslangic: str= "2021-01-01", bitis: str = "2026-06-30"):
     veri = veri_cek(hisse, baslangic, bitis)
     ilk_fiyat = veri["Close"].iloc[0]
-    kumulatif_degisim = ((veri["Close"] - ilk_fiyat) / ilkfiyat) * 100
+    kumulatif_degisim = ((veri["Close"] - ilk_fiyat) / ilk_fiyat) * 100
     renk = "green" if kumulatif.iloc[-1] >= 0 else "red"
 
     plt.figure(figsize=(10, 5))
